@@ -76,6 +76,20 @@
         <div id="pago-resultado"></div>
     </section>
 
+    <section>
+        <h2>Pago Simulado (sin interfaz)</h2>
+        <form id="pago-simulado-form">
+            <label>Monto:
+                <input type="number" id="pago-simulado-monto" required min="1" step="any" />
+            </label>
+            <label>Método de Pago:
+                <input type="text" id="pago-simulado-metodo" required placeholder="Ej: tarjeta, efectivo" />
+            </label>
+            <button type="button" onclick="enviarPagoSimulado()">Procesar Pago Simulado</button>
+        </form>
+        <div id="pago-simulado-resultado"></div>
+    </section>
+
 <script>
     const apiBase = 'http://127.0.0.1:5000';
 
@@ -223,6 +237,42 @@
             console.error(err);
         });
     });
+
+    function enviarPagoSimulado() {
+        const monto = parseFloat(document.getElementById('pago-simulado-monto').value);
+        const metodo = document.getElementById('pago-simulado-metodo').value.trim();
+
+        if (!monto || !metodo) {
+            alert('Por favor ingresa monto y método de pago válidos');
+            return;
+        }
+
+        fetch(`${apiBase}/pago/simulado`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                monto: monto,
+                metodo_pago: metodo,
+                productos: []
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            const div = document.getElementById('pago-simulado-resultado');
+            if (data.error) {
+                div.textContent = 'Error: ' + data.error;
+                div.className = 'error';
+            } else {
+                div.textContent = `Pago ${data.estado}. ID Transacción: ${data.transaccion_id}`;
+                div.className = 'success';
+            }
+        })
+        .catch(err => {
+            alert('Error al procesar el pago simulado');
+            console.error(err);
+        });
+    }
+
     cargarProductos();
     actualizarBotonEnviar();
 </script>
