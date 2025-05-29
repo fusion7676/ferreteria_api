@@ -16,6 +16,16 @@ productos = [
     {"id": 3, "nombre": "Taladro", "descripcion": "Taladro eléctrico", "precio": 45000, "stock": 5}
 ]
 
+sucursales = [
+    {"id": 1, "nombre": "Sucursal 1"},
+    {"id": 2, "nombre": "Sucursal 2"},
+    {"id": 3, "nombre": "Sucursal 3"},
+    {"id": 4, "nombre": "Sucursal 4"},
+    {"id": 5, "nombre": "Sucursal 5"},
+    {"id": 6, "nombre": "Sucursal 6"},
+    {"id": 7, "nombre": "Sucursal 7"}
+]
+
 solicitudes = []
 
 @app.route('/')
@@ -29,16 +39,63 @@ def obtener_productos():
 @app.route('/solicitudes', methods=['POST'])
 def crear_solicitud():
     data = request.get_json()
-    if not data or "productos" not in data:
-        return jsonify({"error": "Falta el campo 'productos' en el cuerpo"}), 400
+    if not data or "productos" not in data or "sucursal_id" not in data:
+        return jsonify({"error": "Faltan campos 'productos' o 'sucursal_id' en el cuerpo"}), 400
+
+    sucursal_id = data["sucursal_id"]
+    # Validar que la sucursal exista
+    if not any(s["id"] == sucursal_id for s in sucursales):
+        return jsonify({"error": "Sucursal no encontrada"}), 404
+
     productos_solicitados = data["productos"]
     for item in productos_solicitados:
         if "id" not in item or "cantidad" not in item:
             return jsonify({"error": "Cada producto debe tener 'id' y 'cantidad'"}), 400
+
+    # Validar stock para cada producto
+    for item in productos_solicitados:
+        prod = next((p for p in productos if p["id"] == item["id"]), None)
+        if not prod:
+            return jsonify({"error": f"Producto con id {item['id']} no encontrado"}), 404
+        if prod["stock"] < item["cantidad"]:
+            return jsonify({"error": f"Stock insuficiente para producto {prod['nombre']}. Disponible: {prod['stock']}"}), 400
+
+    # Descontar stock
+    for item in productos_solicitados:
+        prod = next(p for p in productos if p["id"] == item["id"])
+        prod["stock"] -= item["cantidad"]
+
     solicitud_id = str(uuid.uuid4())
-    solicitud = {"id": solicitud_id, "productos": productos_solicitados}
+    solicitud = {
+        "id": solicitud_id,
+        "sucursal_id": sucursal_id,
+        "productos": productos_solicitados
+    }
     solicitudes.append(solicitud)
+
     return jsonify({"mensaje": "Solicitud creada correctamente", "solicitud": solicitud}), 201
+
+@app.route('/reservas', methods=['GET'])
+def obtener_reservas():
+    sucursal_id = request.args.get('sucursal_id', type=int)
+    producto_id = request.args.get('producto_id', type=int)
+
+    reservas_filtradas = solicitudes
+
+    if sucursal_id:
+        reservas_filtradas = [s for s in reservas_filtradas if s["sucursal_id"] == sucursal_id]
+
+    if producto_id:
+        reservas_filtradas = [
+            {
+                "id": s["id"],
+                "sucursal_id": s["sucursal_id"],
+                "productos": [p for p in s["productos"] if p["id"] == producto_id]
+            }
+            for s in reservas_filtradas if any(p["id"] == producto_id for p in s["productos"])
+        ]
+
+    return jsonify(reservas_filtradas), 200
 
 @app.route('/convertir', methods=['GET'])
 def convertir_divisa():
