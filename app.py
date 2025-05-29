@@ -1,8 +1,9 @@
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory, redirect
 from transbank.webpay.webpay_plus.transaction import Transaction
 from transbank.common.integration_type import IntegrationType
 import uuid
 from flask_cors import CORS
+import requests
 
 app = Flask(__name__)
 CORS(app)
@@ -16,8 +17,6 @@ productos = [
 ]
 
 solicitudes = []
-
-TASA_USD_CLP = 800.0
 
 @app.route('/')
 def index():
@@ -49,17 +48,43 @@ def convertir_divisa():
         moneda_destino = request.args.get('moneda_destino', '').upper()
     except (ValueError, TypeError):
         return jsonify({"error": "Parámetros inválidos o faltantes"}), 400
+
     if not monto or not moneda_origen or not moneda_destino:
         return jsonify({"error": "Faltan parámetros requeridos"}), 400
+
     if moneda_origen == moneda_destino:
-        return jsonify({"monto_original": monto, "monto_convertido": monto, "moneda_origen": moneda_origen, "moneda_destino": moneda_destino})
-    if moneda_origen == 'USD' and moneda_destino == 'CLP':
-        monto_convertido = monto * TASA_USD_CLP
-    elif moneda_origen == 'CLP' and moneda_destino == 'USD':
-        monto_convertido = monto / TASA_USD_CLP
-    else:
+        return jsonify({
+            "monto_original": monto,
+            "monto_convertido": monto,
+            "moneda_origen": moneda_origen,
+            "moneda_destino": moneda_destino,
+            "mensaje": "La tasa de cambio tasa_usd_clp se obtiene dinámicamente de https://mindicador.cl/api/dolar."
+        })
+
+    if {moneda_origen, moneda_destino} != {"USD", "CLP"}:
         return jsonify({"error": "Moneda no soportada"}), 400
-    return jsonify({"monto_original": monto, "monto_convertido": round(monto_convertido, 2), "moneda_origen": moneda_origen, "moneda_destino": moneda_destino})
+
+    try:
+        response = requests.get("https://mindicador.cl/api/dolar")
+        response.raise_for_status()
+        data = response.json()
+        tasa_usd_clp = data['serie'][0]['valor']
+    except Exception as e:
+        return jsonify({"error": f"No se pudo obtener la tasa de cambio: {str(e)}"}), 500
+
+    if moneda_origen == 'USD' and moneda_destino == 'CLP':
+        monto_convertido = monto * tasa_usd_clp
+    elif moneda_origen == 'CLP' and moneda_destino == 'USD':
+        monto_convertido = monto / tasa_usd_clp
+
+    return jsonify({
+        "monto_original": monto,
+        "monto_convertido": round(monto_convertido, 2),
+        "moneda_origen": moneda_origen,
+        "moneda_destino": moneda_destino,
+        "tasa_usd_clp": tasa_usd_clp,
+        "mensaje": "La tasa de cambio tasa_usd_clp se obtiene dinámicamente de https://mindicador.cl/api/dolar."
+    })
 
 @app.route('/pago/iniciar', methods=['POST'])
 def iniciar_pago():
