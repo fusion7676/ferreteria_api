@@ -1,0 +1,15 @@
+=== Verificación de app.py ===
+Comando: python -c "import app; print('app.py se importa correctamente')"
+Fecha: 2025-07-02T19:17:11.251217
+Código de salida: 1
+
+=== ERRORES/ADVERTENCIAS ===
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import app; print('app.py se importa correctamente')
+    ^^^^^^^^^^
+  File "C:\Users\intie\Desktop\TRABAJOS\ferreteria_api-master\app.py", line 6, in <module>
+    from flask import Flask, request, jsonify
+ModuleNotFoundError: No module named 'flask'
+
+

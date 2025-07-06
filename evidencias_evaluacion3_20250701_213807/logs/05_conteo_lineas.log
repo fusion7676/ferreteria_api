@@ -1,0 +1,18 @@
+
+EVALUACIÓN 3 - PLAN DE PRUEBAS API FERRETERÍA
+============================================
+Descripción: CONTEO DE LÍNEAS DE CÓDIGO
+Comando: python -c "with open('app.py', 'r', encoding='utf-8') as f: print(f'Líneas en app.py: {len(f.readlines())}')"
+Fecha/Hora: 2025-07-01 21:38:08
+Código de salida: 0
+
+SALIDA ESTÁNDAR:
+--------------------------------------------------
+Líneas en app.py: 297
+
+
+ERRORES/ADVERTENCIAS:
+--------------------------------------------------
+
+
+ESTADO: ✅ EXITOSO

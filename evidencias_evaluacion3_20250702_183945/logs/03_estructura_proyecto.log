@@ -1,0 +1,53 @@
+
+EVALUACIÓN 3 - PLAN DE PRUEBAS API FERRETERÍA
+============================================
+Descripción: ESTRUCTURA DEL PROYECTO
+Comando: dir
+Fecha/Hora: 2025-07-02 18:39:45
+Código de salida: 0
+
+SALIDA ESTÁNDAR:
+--------------------------------------------------
+ El volumen de la unidad C no tiene etiqueta.
+ El n£mero de serie del volumen es: 3221-8147
+
+ Directorio de C:\Users\intie\Desktop\TRABAJOS\ferreteria_api-master
+
+02-07-2025  18:39    <DIR>          .
+02-07-2025  16:44    <DIR>          ..
+02-07-2025  18:39            53.248 .coverage
+01-07-2025  21:21    <DIR>          .pytest_cache
+01-07-2025  21:20            10.077 app.py
+01-07-2025  21:20            11.829 app_ferreteria.py
+01-07-2025  21:20             7.422 app_original_backup.py
+01-07-2025  21:00            20.444 configurar_proyecto_completo.py
+02-07-2025  18:39             6.516 coverage.xml
+01-07-2025  21:32             5.849 ejecutar_katalon.py
+01-07-2025  22:02             4.674 ejecutar_katalon_completo.py
+01-07-2025  21:08             3.171 ejecutar_pruebas_completas.py
+01-07-2025  21:37             5.755 ejecutar_todo_evaluacion.py
+01-07-2025  21:38    <DIR>          evidencias_evaluacion3_20250701_213807
+02-07-2025  18:39    <DIR>          evidencias_evaluacion3_20250702_183945
+02-07-2025  18:39            20.480 ferreteria.db
+01-07-2025  21:00             7.766 generar_evidencias.py
+01-07-2025  21:07             6.381 guia_capturas_rapida.py
+01-07-2025  21:21    <DIR>          htmlcov
+29-05-2025  15:50             9.955 index.html
+01-07-2025  21:32             4.578 KATALON_SETUP_GUIDE.md
+01-07-2025  21:28    <DIR>          katalon_tests
+01-07-2025  21:08               339 pytest.ini
+29-05-2025  15:50               156 README.md
+01-07-2025  21:08               146 requirements.txt
+01-07-2025  21:34             2.347 test-results.xml
+01-07-2025  21:13    <DIR>          tests
+01-07-2025  21:12    <DIR>          venv
+01-07-2025  21:21    <DIR>          __pycache__
+              19 archivos        181.133 bytes
+              10 dirs  93.046.513.664 bytes libres
+
+
+ERRORES/ADVERTENCIAS:
+--------------------------------------------------
+
+
+ESTADO: ✅ EXITOSO

@@ -1,0 +1,18 @@
+
+EVALUACIÓN 3 - PLAN DE PRUEBAS API FERRETERÍA
+============================================
+Descripción: VERIFICACIÓN DE PYTHON
+Comando: python --version
+Fecha/Hora: 2025-07-02 18:39:45
+Código de salida: 0
+
+SALIDA ESTÁNDAR:
+--------------------------------------------------
+Python 3.13.3
+
+
+ERRORES/ADVERTENCIAS:
+--------------------------------------------------
+
+
+ESTADO: ✅ EXITOSO

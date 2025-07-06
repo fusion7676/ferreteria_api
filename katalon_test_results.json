@@ -1,0 +1,70 @@
+{
+  "execution_info": {
+    "suite_name": "API_Ferreteria_Complete",
+    "execution_time": "2025-07-03T14:54:04.088416",
+    "total_duration": "45.2 seconds",
+    "environment": "Test"
+  },
+  "test_cases": [
+    {
+      "name": "API_Health_Check",
+      "status": "PASSED",
+      "duration": "2.1s",
+      "steps": [
+        {
+          "step": "Send GET request to /health",
+          "status": "PASSED"
+        },
+        {
+          "step": "Verify status code 200",
+          "status": "PASSED"
+        },
+        {
+          "step": "Verify response contains 'healthy'",
+          "status": "PASSED"
+        }
+      ]
+    },
+    {
+      "name": "API_Productos_CRUD",
+      "status": "PASSED",
+      "duration": "43.1s",
+      "steps": [
+        {
+          "step": "Create test category",
+          "status": "PASSED"
+        },
+        {
+          "step": "Create product",
+          "status": "PASSED"
+        },
+        {
+          "step": "Read product",
+          "status": "PASSED"
+        },
+        {
+          "step": "Update product stock",
+          "status": "PASSED"
+        },
+        {
+          "step": "List all products",
+          "status": "PASSED"
+        },
+        {
+          "step": "Search products",
+          "status": "PASSED"
+        },
+        {
+          "step": "Validate error handling",
+          "status": "PASSED"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_tests": 2,
+    "passed": 2,
+    "failed": 0,
+    "success_rate": "100%"
+  }
+}

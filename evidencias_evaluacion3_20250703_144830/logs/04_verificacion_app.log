@@ -1,0 +1,9 @@
+=== Verificación de app.py ===
+Comando: python -c "import app; print('app.py se importa correctamente')"
+Fecha: 2025-07-03T14:48:31.188801
+Código de salida: 0
+
+=== SALIDA ===
+app.py se importa correctamente
+
+

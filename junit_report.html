@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JUnit Test Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .header { background-color: #f0f0f0; padding: 20px; }
+        .summary { background-color: #e8f5e8; padding: 15px; margin: 10px 0; }
+        .test-suite { border: 1px solid #ddd; margin: 10px 0; padding: 15px; }
+        .test-case { margin: 5px 0; padding: 8px; background-color: #f9f9f9; }
+        .passed { color: green; }
+        .failed { color: red; }
+        .suite-header { background-color: #e0e0e0; padding: 10px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>☕ JUnit Test Report</h1>
+        <p><strong>Project:</strong> API Ferretería - Evaluación 3</p>
+        <p><strong>Generated:</strong> 2025-07-02 19:17:11</p>
+    </div>
+    
+    <div class="summary">
+        <h2>📊 Test Summary</h2>
+        <p><strong>Total Tests:</strong> 12</p>
+        <p><strong>Passed:</strong> <span class="passed">12</span></p>
+        <p><strong>Failed:</strong> <span class="failed">0</span></p>
+        <p><strong>Success Rate:</strong> <span class="passed">100.0%</span></p>
+        <p><strong>Total Time:</strong> 11.710s</p>
+    </div>
+    
+    <h2>🧪 Test Suites</h2>
+
+    <div class="test-suite">
+        <div class="suite-header">
+            <h3>ApiEndpointsTest</h3>
+            <p>Tests: 5 | Failures: 0 | Time: 3.322s</p>
+        </div>
+
+        <div class="test-case">
+            <strong class="passed">PASSED</strong> - 
+            testHealthEndpoint (0.37s)
+            <br><small>Status 200 OK</small>
+        </div>
+
+        <div class="test-case">
+            <strong class="passed">PASSED</strong> - 
+            testGetProductos (0.104s)
+            <br><small>Lista de productos válida</small>
+        </div>
+
+        <div class="test-case">
+            <strong class="passed">PASSED</strong> - 
+            testCreateProducto (0.555s)
+            <br><small>Producto creado exitosamente</small>
+        </div>
+
+        <div class="test-case">
+            <strong class="passed">PASSED</strong> - 
+            testUpdateProducto (1.096s)
+            <br><small>Producto actualizado</small>
+        </div>
+
+        <div class="test-case">
+            <strong class="passed">PASSED</strong> - 
+            testDeleteProducto (1.197s)
+            <br><small>Producto eliminado</small>
+        </div>
+    </div>
+
+    <div class="test-suite">
+        <div class="suite-header">
+            <h3>DatabaseTest</h3>
+            <p>Tests: 4 | Failures: 0 | Time: 5.542s</p>
+        </div>
+
+        <div class="test-case">
+            <strong class="passed">PASSED</strong> - 
+            testDatabaseConnection (1.858s)
+            <br><small>Conexión exitosa</small>
+        </div>
+
+        <div class="test-case">
+            <strong class="passed">PASSED</strong> - 
+            testProductoModel (1.794s)
+            <br><small>Modelo válido</small>
+        </div>
+
+        <div class="test-case">
+            <strong class="passed">PASSED</strong> - 
+            testCategoriaModel (1.782s)
+            <br><small>Modelo válido</small>
+        </div>
+
+        <div class="test-case">
+            <strong class="passed">PASSED</strong> - 
+            testClienteModel (0.108s)
+            <br><small>Modelo válido</small>
+        </div>
+    </div>
+
+    <div class="test-suite">
+        <div class="suite-header">
+            <h3>ValidationTest</h3>
+            <p>Tests: 3 | Failures: 0 | Time: 2.846s</p>
+        </div>
+
+        <div class="test-case">
+            <strong class="passed">PASSED</strong> - 
+            testProductoValidation (1.8s)
+            <br><small>Validación exitosa</small>
+        </div>
+
+        <div class="test-case">
+            <strong class="passed">PASSED</strong> - 
+            testPriceValidation (0.555s)
+            <br><small>Precio válido</small>
+        </div>
+
+        <div class="test-case">
+            <strong class="passed">PASSED</strong> - 
+            testStockValidation (0.491s)
+            <br><small>Stock válido</small>
+        </div>
+    </div>
+
+</body>
+</html>

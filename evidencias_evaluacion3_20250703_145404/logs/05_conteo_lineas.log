@@ -1,0 +1,5 @@
+=== Conteo de líneas de código ===
+Comando: python -c "with open('app.py', 'r', encoding='utf-8') as f: print(f'Líneas en app.py: {len(f.readlines())}')"
+Fecha: 2025-07-03T14:54:05.076444
+Código de salida: 0
+

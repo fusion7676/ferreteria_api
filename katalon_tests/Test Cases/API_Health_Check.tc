@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>Verificar que el endpoint de health check responda correctamente</description>
+   <name>API_Health_Check</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>health-check-001</testCaseGuid>
+   <variableLinks>
+   </variableLinks>
+   <variable>
+      <defaultValue>'http://localhost:5000'</defaultValue>
+      <description>URL base de la API</description>
+      <id>base_url</id>
+      <masked>false</masked>
+      <name>base_url</name>
+   </variable>
+</TestCaseEntity>

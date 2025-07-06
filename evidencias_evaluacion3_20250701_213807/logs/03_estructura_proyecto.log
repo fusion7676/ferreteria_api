@@ -1,0 +1,51 @@
+
+EVALUACIÓN 3 - PLAN DE PRUEBAS API FERRETERÍA
+============================================
+Descripción: ESTRUCTURA DEL PROYECTO
+Comando: dir
+Fecha/Hora: 2025-07-01 21:38:08
+Código de salida: 0
+
+SALIDA ESTÁNDAR:
+--------------------------------------------------
+ El volumen de la unidad C no tiene etiqueta.
+ El n£mero de serie del volumen es: 3221-8147
+
+ Directorio de C:\Users\intie\Desktop\TRABAJOS\ferreteria_api-master
+
+01-07-2025  21:38    <DIR>          .
+01-07-2025  20:40    <DIR>          ..
+01-07-2025  21:38            53.248 .coverage
+01-07-2025  21:21    <DIR>          .pytest_cache
+01-07-2025  21:20            10.077 app.py
+01-07-2025  21:20            11.829 app_ferreteria.py
+01-07-2025  21:20             7.422 app_original_backup.py
+01-07-2025  21:00            20.444 configurar_proyecto_completo.py
+01-07-2025  21:38             6.516 coverage.xml
+01-07-2025  21:32             5.849 ejecutar_katalon.py
+01-07-2025  21:08             3.171 ejecutar_pruebas_completas.py
+01-07-2025  21:37             5.755 ejecutar_todo_evaluacion.py
+01-07-2025  21:38    <DIR>          evidencias_evaluacion3_20250701_213807
+01-07-2025  21:38            20.480 ferreteria.db
+01-07-2025  21:00             7.766 generar_evidencias.py
+01-07-2025  21:07             6.381 guia_capturas_rapida.py
+01-07-2025  21:21    <DIR>          htmlcov
+29-05-2025  15:50             9.955 index.html
+01-07-2025  21:32             4.578 KATALON_SETUP_GUIDE.md
+01-07-2025  21:28    <DIR>          katalon_tests
+01-07-2025  21:08               339 pytest.ini
+29-05-2025  15:50               156 README.md
+01-07-2025  21:08               146 requirements.txt
+01-07-2025  21:34             2.347 test-results.xml
+01-07-2025  21:13    <DIR>          tests
+01-07-2025  21:12    <DIR>          venv
+01-07-2025  21:21    <DIR>          __pycache__
+              18 archivos        176.459 bytes
+               9 dirs  92.069.306.368 bytes libres
+
+
+ERRORES/ADVERTENCIAS:
+--------------------------------------------------
+
+
+ESTADO: ✅ EXITOSO

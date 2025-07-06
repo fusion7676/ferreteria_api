@@ -1,0 +1,13 @@
+=== Verificación de Flask ===
+Comando: python -c "import flask; print(f'Flask version: {flask.__version__}')"
+Fecha: 2025-07-03T14:54:04.456110
+Código de salida: 0
+
+=== SALIDA ===
+Flask version: 3.1.1
+
+
+=== ERRORES/ADVERTENCIAS ===
+<string>:1: DeprecationWarning: The '__version__' attribute is deprecated and will be removed in Flask 3.2. Use feature detection or 'importlib.metadata.version("flask")' instead.
+
+

@@ -1,0 +1,19 @@
+
+EVALUACIÓN 3 - PLAN DE PRUEBAS API FERRETERÍA
+============================================
+Descripción: VERIFICACIÓN DE FLASK
+Comando: python -c "import flask; print('Flask version:', flask.__version__)"
+Fecha/Hora: 2025-07-02 18:39:45
+Código de salida: 0
+
+SALIDA ESTÁNDAR:
+--------------------------------------------------
+Flask version: 3.1.1
+
+
+ERRORES/ADVERTENCIAS:
+--------------------------------------------------
+<string>:1: DeprecationWarning: The '__version__' attribute is deprecated and will be removed in Flask 3.2. Use feature detection or 'importlib.metadata.version("flask")' instead.
+
+
+ESTADO: ✅ EXITOSO

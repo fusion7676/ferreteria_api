@@ -1,0 +1,13 @@
+=== Verificación de Flask ===
+Comando: python -c "import flask; print(f'Flask version: {flask.__version__}')"
+Fecha: 2025-07-02T19:17:43.299894
+Código de salida: 1
+
+=== ERRORES/ADVERTENCIAS ===
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import flask; print(f'Flask version: {flask.__version__}')
+    ^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'flask'
+
+

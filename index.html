@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Ferretería</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        section { margin-bottom: 40px; }
+        label { display: block; margin-top: 10px; }
+        input, select, button { margin-top: 5px; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 5px; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+
+    <h1>Ferretería</h1>
+
+    <section>
+        <h2>Catálogo de Productos</h2>
+        <ul id="productos-list"></ul>
+        <button onclick="cargarProductos()">Actualizar Productos</button>
+    </section>
+    <section>
+        <h2>Solicitar Productos</h2>
+        <form id="solicitud-form">
+            <label>Producto ID:
+                <input type="number" id="producto-id" min="1" />
+            </label>
+            <label>Cantidad:
+                <input type="number" id="producto-cantidad" min="1" />
+            </label>
+            <button type="button" onclick="agregarProducto()">Agregar Producto</button>
+
+            <h3>Productos a solicitar:</h3>
+            <ul id="productos-solicitados-list"></ul>
+
+            <button type="submit" disabled>Enviar Solicitud</button>
+        </form>
+        <div id="solicitud-mensaje"></div>
+    </section>
+
+    <section>
+        <h2>Conversión de Divisas</h2>
+        <form id="conversion-form">
+            <label>Monto:
+                <input type="number" id="monto" required min="0" step="any" />
+            </label>
+            <label>Moneda Origen:
+                <select id="moneda-origen" required>
+                    <option value="USD">USD</option>
+                    <option value="CLP">CLP</option>
+                </select>
+            </label>
+            <label>Moneda Destino:
+                <select id="moneda-destino" required>
+                    <option value="CLP">CLP</option>
+                    <option value="USD">USD</option>
+                </select>
+            </label>
+            <button type="submit">Convertir</button>
+        </form>
+        <div id="conversion-resultado"></div>
+    </section>
+
+    <section>
+        <h2>Pago con WebPay</h2>
+        <form id="pago-form">
+            <label>Monto Total:
+                <input type="number" id="monto-total" required min="1" step="any" />
+            </label>
+            <button type="submit">Pagar con WebPay</button>
+        </form>
+        <div id="pago-resultado"></div>
+    </section>
+
+    <section>
+        <h2>Pago Simulado (sin interfaz)</h2>
+        <form id="pago-simulado-form">
+            <label>Monto:
+                <input type="number" id="pago-simulado-monto" required min="1" step="any" />
+            </label>
+            <label>Método de Pago:
+                <input type="text" id="pago-simulado-metodo" required placeholder="Ej: tarjeta, efectivo" />
+            </label>
+            <button type="button" onclick="enviarPagoSimulado()">Procesar Pago Simulado</button>
+        </form>
+        <div id="pago-simulado-resultado"></div>
+    </section>
+
+<script>
+    const apiBase = 'http://127.0.0.1:5000';
+
+    function cargarProductos() {
+        fetch(`${apiBase}/productos`)
+            .then(res => res.json())
+            .then(data => {
+                const ul = document.getElementById('productos-list');
+                ul.innerHTML = '';
+                data.forEach(p => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<strong>${p.nombre}</strong> (ID: ${p.id}) - $${p.precio} - Stock: ${p.stock}`;
+                    ul.appendChild(li);
+                });
+            })
+            .catch(err => {
+                alert('Error al cargar productos');
+                console.error(err);
+            });
+    }
+
+    let productosSolicitados = [];
+
+    function actualizarBotonEnviar() {
+        const btnEnviar = document.querySelector('#solicitud-form button[type="submit"]');
+        btnEnviar.disabled = productosSolicitados.length === 0;
+    }
+
+    function agregarProducto() {
+        const idInput = document.getElementById('producto-id');
+        const cantidadInput = document.getElementById('producto-cantidad');
+        const id = parseInt(idInput.value);
+        const cantidad = parseInt(cantidadInput.value);
+
+        if (!id || !cantidad || cantidad < 1) {
+            alert('Por favor ingresa un ID y cantidad válidos');
+            return;
+        }
+
+        productosSolicitados.push({ id, cantidad });
+        mostrarProductosSolicitados();
+        actualizarBotonEnviar();
+
+        idInput.value = '';
+        cantidadInput.value = '';
+    }
+
+    function mostrarProductosSolicitados() {
+        const ul = document.getElementById('productos-solicitados-list');
+        ul.innerHTML = '';
+        productosSolicitados.forEach((p, i) => {
+            const li = document.createElement('li');
+            li.textContent = `ID: ${p.id}, Cantidad: ${p.cantidad} `;
+            const btn = document.createElement('button');
+            btn.textContent = 'Eliminar';
+            btn.onclick = () => {
+                productosSolicitados.splice(i, 1);
+                mostrarProductosSolicitados();
+                actualizarBotonEnviar();
+            };
+            li.appendChild(btn);
+            ul.appendChild(li);
+        });
+    }
+
+    document.getElementById('solicitud-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (productosSolicitados.length === 0) {
+            alert('Agrega al menos un producto a la solicitud');
+            return;
+        }
+
+        fetch(`${apiBase}/solicitudes`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ productos: productosSolicitados })
+        })
+        .then(res => res.json())
+        .then(data => {
+            const mensajeDiv = document.getElementById('solicitud-mensaje');
+            if (data.error) {
+                mensajeDiv.textContent = data.error;
+                mensajeDiv.className = 'error';
+            } else {
+                mensajeDiv.textContent = 'Solicitud enviada correctamente. ID: ' + data.solicitud.id;
+                mensajeDiv.className = 'success';
+                productosSolicitados = [];
+                mostrarProductosSolicitados();
+                actualizarBotonEnviar();
+            }
+        })
+        .catch(err => {
+            alert('Error al enviar la solicitud');
+            console.error(err);
+        });
+    });
+
+    document.getElementById('conversion-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const monto = document.getElementById('monto').value;
+        const monedaOrigen = document.getElementById('moneda-origen').value;
+        const monedaDestino = document.getElementById('moneda-destino').value;
+
+        fetch(`${apiBase}/convertir?monto=${monto}&moneda_origen=${monedaOrigen}&moneda_destino=${monedaDestino}`)
+            .then(res => res.json())
+            .then(data => {
+                const resultadoDiv = document.getElementById('conversion-resultado');
+                if (data.error) {
+                    resultadoDiv.textContent = 'Error: ' + data.error;
+                    resultadoDiv.className = 'error';
+                } else {
+                    resultadoDiv.textContent = `Resultado: ${data.monto_original} ${data.moneda_origen} = ${data.monto_convertido} ${data.moneda_destino}`;
+                    resultadoDiv.className = 'success';
+                }
+            })
+            .catch(err => {
+                alert('Error al realizar la conversión');
+                console.error(err);
+            });
+    });
+
+    document.getElementById('pago-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const montoTotal = document.getElementById('monto-total').value;
+
+        fetch(`${apiBase}/pago/iniciar`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ monto_total: parseFloat(montoTotal) })
+        })
+        .then(res => res.json())
+        .then(data => {
+            const div = document.getElementById('pago-resultado');
+            if (data.error) {
+                div.textContent = 'Error: ' + data.error;
+                div.className = 'error';
+            } else {
+                window.location.href = data.url + '?token_ws=' + data.token;
+            }
+        })
+        .catch(err => {
+            alert('Error al iniciar pago');
+            console.error(err);
+        });
+    });
+
+    function enviarPagoSimulado() {
+        const monto = parseFloat(document.getElementById('pago-simulado-monto').value);
+        const metodo = document.getElementById('pago-simulado-metodo').value.trim();
+
+        if (!monto || !metodo) {
+            alert('Por favor ingresa monto y método de pago válidos');
+            return;
+        }
+
+        fetch(`${apiBase}/pago/simulado`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                monto: monto,
+                metodo_pago: metodo,
+                productos: []
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            const div = document.getElementById('pago-simulado-resultado');
+            if (data.error) {
+                div.textContent = 'Error: ' + data.error;
+                div.className = 'error';
+            } else {
+                div.textContent = `Pago ${data.estado}. ID Transacción: ${data.transaccion_id}`;
+                div.className = 'success';
+            }
+        })
+        .catch(err => {
+            alert('Error al procesar el pago simulado');
+            console.error(err);
+        });
+    }
+
+    cargarProductos();
+    actualizarBotonEnviar();
+</script>
+
+</body>
+</html>
