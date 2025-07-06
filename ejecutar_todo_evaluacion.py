@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-EJECUTOR COMPLETO PARA EVALUACIÓN 3
+EJECUTOR COMPLETO DEL PROYECTO
 API Ferretería - Todas las pruebas en secuencia
 """
 
@@ -55,7 +55,7 @@ def verificar_archivos():
     return True
 
 def main():
-    print("🎯 EJECUTOR COMPLETO - EVALUACIÓN 3")
+    print("🎯 EJECUTOR COMPLETO DEL PROYECTO")
     print("📋 API Ferretería - Todas las Pruebas")
     print(f"🕐 Fecha: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 80)

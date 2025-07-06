@@ -250,7 +250,7 @@ Al ejecutar la aplicación por primera vez, se crean automáticamente:
 - **Validaciones**: Implementadas en servicios y endpoints
 - **Error Handling**: Manejo apropiado de errores HTTP
 
-## Comandos Útiles para el Examen
+## Comandos Útiles
 
 ```bash
 # Ejecutar aplicación
@@ -274,8 +274,8 @@ rm ferreteria.db
 
 ## Estado del Proyecto
 
-✅ **COMPLETO** - Listo para examen con:
-- 4 integraciones funcionales
+✅ **COMPLETO** - Proyecto funcional con:
+- 4 integraciones robustas
 - Funcionalidades adyacentes implementadas
 - Suite completa de tests unitarios e integración
 - Documentación completa de ejecución

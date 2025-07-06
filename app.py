@@ -1,5 +1,5 @@
 """
-API REST para Ferretería - Evaluación 3
+API REST para Ferretería - Sistema Completo
 Sistema de gestión de productos, categorías y clientes
 """
 

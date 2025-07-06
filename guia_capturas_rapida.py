@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Guía rápida para generar capturas de la Evaluación 3
+Guía rápida para generar capturas del proyecto
 """
 
 import os
@@ -22,7 +22,7 @@ def print_instruccion(numero, titulo, descripcion, comando=None):
     print(f"\n📷 QUÉ CAPTURAR:")
 
 def main():
-    print("🎯 GUÍA RÁPIDA DE CAPTURAS - EVALUACIÓN 3")
+    print("🎯 GUÍA RÁPIDA DE CAPTURAS DEL PROYECTO")
     print("📋 Plan de Pruebas API Ferretería")
     print("=" * 80)
     

@@ -1,7 +1,6 @@
 """
 Pruebas de integración para la API Ferretería
 """
-import pytest
 import json
 
 class TestIntegracionCatalogo:
@@ -310,7 +309,6 @@ class TestIntegracionCompleta:
         # 2. Cliente consulta catálogo en USD
         response = client.get('/catalogo?moneda=USD')
         assert response.status_code == 200
-        catalogo_usd = json.loads(response.data)
         
         # 3. Cliente decide comprar y se inicia transacción WebPay
         transaccion_data = {

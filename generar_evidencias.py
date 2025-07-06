@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Script para generar todas las evidencias necesarias para la Evaluación 3
+Script para generar todas las evidencias necesarias del proyecto
 Plan de Pruebas - API Ferretería
 """
 
@@ -14,7 +14,7 @@ from datetime import datetime
 def crear_directorio_evidencias():
     """Crear directorio para almacenar todas las evidencias"""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    dir_evidencias = f"evidencias_evaluacion3_{timestamp}"
+    dir_evidencias = f"evidencias_proyecto_{timestamp}"
     
     if not os.path.exists(dir_evidencias):
         os.makedirs(dir_evidencias)

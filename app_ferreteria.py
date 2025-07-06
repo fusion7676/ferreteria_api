@@ -1,5 +1,5 @@
 """
-API REST para Ferretería - Evaluación 3
+API REST para Ferretería - Sistema Completo
 Sistema de gestión de productos, categorías y clientes
 """
 
@@ -949,13 +949,22 @@ def init_db():
 if __name__ == '__main__':
     init_db()
     print("🚀 Iniciando API de Ferretería...")
-    print("📋 Endpoints disponibles:")    print("   === BÁSICOS ===")    print("   GET  /health - Health check")    print("   GET  /catalogo - Catálogo completo con conversión de monedas")
-    print("   === PRODUCTOS ===")    print("   GET  /productos - Listar productos")
+    print("📋 Endpoints disponibles:")
+    print("   === BÁSICOS ===")
+    print("   GET  /health - Health check")
+    print("   GET  /catalogo - Catálogo completo con conversión de monedas")
+    print("   === PRODUCTOS ===")
+    print("   GET  /productos - Listar productos")
     print("   POST /productos - Crear producto")
     print("   GET  /productos/<id> - Obtener producto")
-    print("   PUT  /productos/<id>/stock - Actualizar stock")    print("   === CATEGORÍAS ===")    print("   GET  /categorias - Listar categorías")
-    print("   POST /categorias - Crear categoría")    print("   === CLIENTES ===")    print("   GET  /clientes - Listar clientes")
-    print("   POST /clientes - Crear cliente")    print("   === SUCURSALES ===")
+    print("   PUT  /productos/<id>/stock - Actualizar stock")
+    print("   === CATEGORÍAS ===")
+    print("   GET  /categorias - Listar categorías")
+    print("   POST /categorias - Crear categoría")
+    print("   === CLIENTES ===")
+    print("   GET  /clientes - Listar clientes")
+    print("   POST /clientes - Crear cliente")
+    print("   === SUCURSALES ===")
     print("   GET  /sucursales - Listar sucursales")
     print("   POST /sucursales - Crear sucursal")
     print("   === PEDIDOS ENTRE SUCURSALES ===")
@@ -969,6 +978,7 @@ if __name__ == '__main__':
     print("   === CAMBIO DE DIVISAS ===")
     print("   POST /divisas/convertir - Convertir montos")
     print("   GET  /divisas/tasas - Obtener tasas de cambio")
-    print("   POST /divisas/actualizar-tasas - Actualizar tasas")    print("🌐 Servidor ejecutándose en: http://127.0.0.1:5000")
+    print("   POST /divisas/actualizar-tasas - Actualizar tasas")
+    print("🌐 Servidor ejecutándose en: http://127.0.0.1:5000")
     
     app.run(debug=True, host='0.0.0.0', port=5000)
