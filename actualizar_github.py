@@ -93,7 +93,7 @@ def main():
     ejecutar_comando("git status --short", "Ver archivos en staging")
     
     # Paso 4: Hacer commit
-    mensaje_commit = "Actualizar proyecto: eliminar referencias académicas y mejorar documentación profesional"
+    mensaje_commit = "Optimizar proyecto: documentación limpia y estructura mejorada"
     print(f"\n💾 CREANDO COMMIT")
     if not ejecutar_comando(f'git commit -m "{mensaje_commit}"', "Crear commit"):
         print("ℹ️ Puede que no haya cambios para commitear")

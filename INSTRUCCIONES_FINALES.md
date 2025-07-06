@@ -42,7 +42,7 @@ python eliminar_md_innecesarios.py
 
 # 2. Subir cambios
 git add .
-git commit -m "Proyecto final: solo README.md como documentación"
+git commit -m "Optimizar documentación: mantener solo README.md"
 git push origin master
 ```
 

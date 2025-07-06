@@ -43,7 +43,7 @@ def main():
         print(f"   ⚠️  README.md no encontrado!")
     
     print(f"\n🎉 Limpieza completada!")
-    print(f"💡 Ahora ejecuta: python actualizar_github.py")
+    print(f"💡 Ahora ejecuta: git add . && git commit -m 'Optimizar documentación: mantener solo README.md' && git push")
 
 if __name__ == "__main__":
     main()
